@@ -1,0 +1,90 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="profesores")
+public class Profesor {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private int edad;
+	//Consideramos que un profesor tiene como jefe un director, y un director tiene a cargo N profesores
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="fk_id_director", referencedColumnName="listaProfesores")
+	private Director director;
+	//Consideramos, para simplificar, que cada profesor solo da clase en un colegio, pero el colegio tiene N profesores
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "fk_id_colegio", referencedColumnName = "id")
+	private Colegio colegio;
+	//Consideramos que cada el profesor puede impartir N asignaturas y cada asignatura puede ser impartida por N profesores
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="profesores_asignaturas",
+	joinColumns= {@JoinColumn(name="fk_id_profesor", referencedColumnName = "id")},
+	inverseJoinColumns= {@JoinColumn(name="fk_id_asignatura", referencedColumnName = "id")})
+	private List<Asignatura> listaAsignaturas;
+	public Profesor(int id, String nombre, int edad, Director director, Colegio colegio,
+			List<Asignatura> listaAsignaturas) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.director = director;
+		this.colegio = colegio;
+		this.listaAsignaturas = listaAsignaturas;
+	}
+	public Profesor() {
+		super();
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public int getEdad() {
+		return edad;
+	}
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	public Director getDirector() {
+		return director;
+	}
+	public void setDirector(Director director) {
+		this.director = director;
+	}
+	public Colegio getColegio() {
+		return colegio;
+	}
+	public void setColegio(Colegio colegio) {
+		this.colegio = colegio;
+	}
+	public List<Asignatura> getListaAsignaturas() {
+		return listaAsignaturas;
+	}
+	public void setListaAsignaturas(List<Asignatura> listaAsignaturas) {
+		this.listaAsignaturas = listaAsignaturas;
+	}
+	
+	
+}

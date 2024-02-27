@@ -1,0 +1,179 @@
+package modelo.prueba;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import modelo.entidad.Autor;
+import modelo.entidad.Editorial;
+import modelo.entidad.Libreria;
+import modelo.entidad.Libro;
+
+public class Prueba {
+
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ActividadJPA");
+		EntityManager em = null;
+		
+		//Creamos 3 autores sin id porque lo asigna la BBDD
+		Date date1 = new Date();
+		Autor autorLaura = new Autor(0, "Laura", "Gallego García",null);
+		autorLaura.setFechaNacimiento(date1);
+		Autor autorCarlos = new Autor(0, "Carlos", "Ruiz Zafón",null);
+		autorCarlos.setFechaNacimiento(date1);
+		Autor autorPatrick = new Autor(0, "Patrick", "Rothfuss",null);
+		autorPatrick.setFechaNacimiento(date1);
+		
+		//Creamos 2 editoriales sin id porque lo asigna la BBDD
+		Editorial alfaguara = new Editorial(0, "Alfaguara", "Avenida del Mediterráneo, 7", null);
+		Editorial panamericana = new Editorial(0, "Panamericana", "Calle de la Oca, 53", null);
+		
+		//Creamos 8 libros sin id, porque lo asigna la BBDD
+		Libro l1 = new Libro (0, "Fenris el elfo", null);
+		Libro l2 = new Libro (0, "El valle de los lobos", null);
+		Libro l3 = new Libro (0, "Memorias de Idhun", null);
+		Libro l4 = new Libro (0, "Donde los árboles cantan", null);
+		Libro l5 = new Libro (0, "El nombre del viento", null);
+		Libro l6 = new Libro (0, "El temor de un hombre sabio", null);
+		Libro l7 = new Libro (0, "La sombra del viento", null);
+		Libro l8 = new Libro (0, "El príncipe de la niebla", null);
+		
+		//Creamos 2 librerías
+		Libreria libOpalo = new Libreria(0, "Opalo", "Agustin Hurtado Gomez", "Avenida de Portugal, 15");
+		Libreria libMedrano = new Libreria(0, "Medrano", "Sergio Main Sanz", "Calle Principe de Veragara, 217");
+		
+		//Asociamos los libros a los autores
+		ArrayList<Libro> librosLaura = new ArrayList<Libro>();
+		librosLaura.add(l1);
+		librosLaura.add(l2);
+		librosLaura.add(l3);
+		librosLaura.add(l4);
+		autorLaura.setListaLibros(librosLaura);
+		
+		ArrayList<Libro> librosPatrick = new ArrayList<Libro>();
+		librosPatrick.add(l5);
+		librosPatrick.add(l6);
+		autorLaura.setListaLibros(librosPatrick);
+		
+		ArrayList<Libro> librosCarlos = new ArrayList<Libro>();
+		librosCarlos.add(l7);
+		librosCarlos.add(l8);
+		autorCarlos.setListaLibros(librosCarlos);
+		
+		//Ahora asignamos los autores a los libros
+		l1.setAutor(autorLaura);
+		l2.setAutor(autorLaura);
+		l3.setAutor(autorLaura);
+		l4.setAutor(autorLaura);
+		l5.setAutor(autorPatrick);
+		l6.setAutor(autorPatrick);
+		l7.setAutor(autorCarlos);
+		l8.setAutor(autorCarlos);
+		
+		//Ahora, asignamos la editorial a los libros
+		l1.setEditorial(panamericana);
+		l2.setEditorial(alfaguara);
+		l3.setEditorial(panamericana);
+		l4.setEditorial(panamericana);
+		l5.setEditorial(alfaguara);
+		l6.setEditorial(alfaguara);
+		l7.setEditorial(panamericana);
+		l8.setEditorial(panamericana);
+		
+		//Ahora asignamos los libros a las editoriales 
+		ArrayList<Libro> librosPanamericana = new ArrayList<Libro>();
+		librosPanamericana.add(l1);
+		librosPanamericana.add(l3);
+		librosPanamericana.add(l4);
+		librosPanamericana.add(l7);
+		librosPanamericana.add(l8);
+		panamericana.setListaLibros(librosPanamericana);
+		
+		ArrayList<Libro> librosAlfaguara = new ArrayList<Libro>();
+		librosAlfaguara.add(l2);
+		librosAlfaguara.add(l5);
+		librosAlfaguara.add(l6);
+		panamericana.setListaLibros(librosAlfaguara);
+		
+		//Ahora asignamos las librerias a los libros
+		ArrayList<Libreria> libreriaDos = new ArrayList<Libreria>();
+		libreriaDos.add(libOpalo);
+		libreriaDos.add(libMedrano);
+		l5.setListaLibrerias(libreriaDos);
+		
+		ArrayList<Libreria> libreriaUnaOpalo = new ArrayList<Libreria>();
+		libreriaUnaOpalo.add(libOpalo);
+		l1.setListaLibrerias(libreriaUnaOpalo);
+		l2.setListaLibrerias(libreriaUnaOpalo);
+		l7.setListaLibrerias(libreriaUnaOpalo);
+		
+		ArrayList<Libreria> libreriaUnaMedr = new ArrayList<Libreria>();
+		libreriaUnaMedr.add(libMedrano);
+		l3.setListaLibrerias(libreriaUnaMedr);
+		l4.setListaLibrerias(libreriaUnaMedr);
+		l6.setListaLibrerias(libreriaUnaMedr);
+
+		//Ahora asignamos los libros a las librerias
+		ArrayList<Libro> librosOpalo = new ArrayList<Libro>();
+		librosOpalo.add(l1);
+		librosOpalo.add(l2);
+		librosOpalo.add(l7);
+		librosOpalo.add(l5);
+		libOpalo.setListaLibros(librosOpalo);
+		
+		ArrayList<Libro> librosMedrano = new ArrayList<Libro>();
+		librosMedrano.add(l3);
+		librosMedrano.add(l4);
+		librosMedrano.add(l5);
+		librosMedrano.add(l6);
+		libMedrano.setListaLibros(librosMedrano);
+		
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		
+		
+		//Como tenemos cascade, con dar de alta un libro, se da de alta todo
+		em.persist(l1);
+		em.getTransaction().commit();
+		//Vamos a hacer ahora las queries
+		//Mostramos los libros dados de alta, con su editorial y su autor
+		Query query = em.createQuery("Select lib from Libro lib JOIN FETCH lib.editorial JOIN FETCH lib.autor", Libro.class);
+		List<Libro> resultados = query.getResultList();
+		for (Libro libro : resultados) {
+		    System.out.println("Título: " + libro.getTitulo());
+		    System.out.println("Editorial: " + libro.getEditorial().getNombre());
+		    System.out.println("Autor: " + libro.getAutor().getNombre() + " " + libro.getAutor().getApellidos());
+		  
+		    System.out.println("-------------------------");
+		}
+		
+		
+		
+		//Mostramos los autores dados de alta, con sus libros asociados
+		query = em.createQuery("Select aut from Autor aut JOIN FETCH aut.listaLibros", Autor.class);
+		List<Autor> listaAutores = query.getResultList();
+		for (Autor a : listaAutores) {
+			if(a == autorLaura) {
+				System.out.println("Autor: " + a.getNombre() + " " + a.getApellidos());
+				System.out.println(a.getListaLibros());
+			}else if (a== autorCarlos) {
+				System.out.println("Autor: " + a.getNombre() + " " + a.getApellidos());
+				System.out.println(a.getListaLibros());
+			}else if ( a== autorPatrick) {
+				System.out.println("Autor: " + a.getNombre() + " " + a.getApellidos());
+				System.out.println(a.getListaLibros());
+			}
+			
+		}
+		
+		em.close();
+		emf.close();
+	}
+
+}

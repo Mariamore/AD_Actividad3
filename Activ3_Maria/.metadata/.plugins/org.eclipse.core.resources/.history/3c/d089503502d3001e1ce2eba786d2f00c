@@ -1,0 +1,39 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "colegios")
+public class Colegio {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
+	private String nombre, direccion;
+	
+	//Consideramos, para simplificar, que cada profesor solo da clase en un colegio, pero el colegio tiene N profesores
+	@OneToMany(mappedBy="colegio", cascade = CascadeType.PERSIST)
+	private List<Profesor> listaProfesores;
+	//Consideramos que un colegio tiene N asignaturas y cada asigantura puede ser impartida en N colegios
+	@ManyToMany
+	private List<Asignatura> listaAsignaturas;
+	//Consideramos que el colegio tiene un director y que el director solo lo es de un colegio
+	@OneToOne
+	@JoinColumn(name="fk_id_director", referencedColumnName="id")
+	private Director director;
+	
+	
+	
+}

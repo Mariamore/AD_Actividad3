@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.persistence.Temporal"/>
+    <fullyQualifiedTypeName name="javax.persistence.TemporalType"/>
+    <fullyQualifiedTypeName name="javax.persistence.Persistence"/>
+    <fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Autor"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Editorial"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Libro"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Libreria"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javax.persistence.Query"/>
+    <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
+    <fullyQualifiedTypeName name="javax.persistence.Column"/>
+    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
+    <fullyQualifiedTypeName name="javax.persistence.Table"/>
+    <fullyQualifiedTypeName name="javax.persistence.Id"/>
+    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinTable"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlRootElement"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlType"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlAttribute"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.JAXBContext"/>
+    <fullyQualifiedTypeName name="modelo.entidad.Articulo"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.Marshaller"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlElementWrapper"/>
+    <fullyQualifiedTypeName name="modelo.entidad.ConjuntoArticulo"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlElement"/>
+</qualifiedTypeNameHistroy>

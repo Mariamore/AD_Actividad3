@@ -1,0 +1,26 @@
+package modelo.entidad;
+
+import java.util.List;
+
+public class ConjuntoArticulo {
+	private List<Articulo> listaArticulos;
+
+	public ConjuntoArticulo(List<Articulo> listaArticulos) {
+		super();
+		this.listaArticulos = listaArticulos;
+	}
+
+	public ConjuntoArticulo() {
+		super();
+	}
+
+	public List<Articulo> getListaArticulos() {
+		return listaArticulos;
+	}
+
+	public void setListaArticulos(List<Articulo> listaArticulos) {
+		this.listaArticulos = listaArticulos;
+	}
+	
+	
+}

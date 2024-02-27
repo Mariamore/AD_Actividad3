@@ -1,0 +1,32 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="profesores")
+public class Profesor {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private int edad;
+	//Consideramos que un profesor tiene como jefe un director, y un director tiene a cargo N profesores
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="fk_id_director", referencedColumnName="listaProfesores")
+	private Director director;
+	//Consideramos, para simplificar, que cada profesor solo da clase en un colegio, pero el colegio tiene N profesores
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "fk_id_colegio", referencedColumnName = "id")
+	private Colegio colegio;
+	private List<Asignatura> listaAsignaturas;
+}

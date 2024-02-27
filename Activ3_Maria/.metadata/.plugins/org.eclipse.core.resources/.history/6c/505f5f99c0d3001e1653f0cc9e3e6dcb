@@ -1,0 +1,7 @@
+package modelo.entidad;
+
+import java.util.List;
+
+public class ConjuntoArticulo {
+	private List<Articulo> listaArticulos;
+}

@@ -1,0 +1,30 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="almacen")
+public class ConjuntoArticulo {
+	private List<Articulo> listaArticulos;
+
+	public ConjuntoArticulo(List<Articulo> listaArticulos) {
+		super();
+		this.listaArticulos = listaArticulos;
+	}
+
+	public ConjuntoArticulo() {
+		super();
+	}
+	@XmlElementWrapper(name="articulos")
+	public List<Articulo> getListaArticulos() {
+		return listaArticulos;
+	}
+
+	public void setListaArticulos(List<Articulo> listaArticulos) {
+		this.listaArticulos = listaArticulos;
+	}
+	
+	
+}

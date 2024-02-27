@@ -1,0 +1,35 @@
+package main;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+import modelo.entidad.Articulo;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		JAXBContext contexto;
+		
+		try {
+			contexto = JAXBContext.newInstance(Articulo.class);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+		Marshaller m;
+		
+		try {
+			m = contexto.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

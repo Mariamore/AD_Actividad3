@@ -1,0 +1,146 @@
+package modelo.entidad;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+@XmlRootElement(name="articulo")
+@XmlType(propOrder= {
+		"id",
+		"nombre",
+		"descripcion",
+		"stock",
+		"precio"
+})
+public class Articulo{
+
+		private int id;
+		private String nombre, descripcion;
+		private int stock;
+		private double precio;
+		
+		private List<Articulo> listaArticulos = new ArrayList<>();
+
+		//Constructor
+		public Articulo(int id, String nombre, String descripcion, int stock, double precio) {
+			super();
+			this.id = id;
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.stock = stock;
+			this.precio = precio;
+			
+		}
+		
+		//Getter and setters 
+
+		public Articulo() {
+			// TODO Auto-generated constructor stub
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+
+		public String getDescripcion() {
+			return descripcion;
+		}
+
+
+		public void setDescripcion(String descripcion) {
+			this.descripcion = descripcion;
+		}
+
+
+		public int getStock() {
+			return stock;
+		}
+
+
+		public void setStock(int stock) {
+			this.stock = stock;
+		}
+
+		public double getPrecio() {
+			return precio;
+		}
+
+		public void setPrecio(double precio) {
+			this.precio = precio;
+		}
+
+
+
+		public List<Articulo> getListaArticulos() {
+			return listaArticulos;
+		}
+
+
+		public void setListaArticulos(List<Articulo> listaArticulos) {
+			this.listaArticulos = listaArticulos;
+		}
+		
+		//Metodo toString
+		@Override
+		public String toString() {
+			return "Articulos [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", stock=" + stock
+					+ ", precio=" + precio + "]";
+		}
+
+		//Cargar datos
+	    public void cargarDatos() {
+	        listaArticulos = new ArrayList<>();
+	        listaArticulos.add(new Articulo(1, "Martillo", "Martillo de carpintero", 50, 15.99));
+	        listaArticulos.add(new Articulo(2, "Destornillador", "Destornillador Phillips", 100, 5.49));
+	        listaArticulos.add(new Articulo(3, "Sierra", "Sierra para madera", 30, 12.79));
+	
+	    }
+
+	//Añadir Articulo 
+	  public  boolean añadirArticulo(Articulo articulo) {	
+		  
+		if (listaArticulos.contains(articulo))
+			return false;
+		else 
+			return listaArticulos.add(articulo);
+	  }
+	  
+	  //Borrar Articulo
+	  public boolean borrarArticulo(Articulo articulo) {
+		  return listaArticulos.remove(articulo);  
+	  }
+	  
+	  //Consultar Articulo por id
+	  public Articulo consultarArticuloId(int id) {
+		    for (Articulo a : listaArticulos) { //recorremos el array para buscar el mismo id
+		        if (a.getId() == id) {
+		            return a;
+		        }
+		    }
+		    return null;
+		}
+	  //Listamos todos los articulos
+	  public List<Articulo> listadoArticulos() {
+		  return listaArticulos;
+	  }
+
+	
+}

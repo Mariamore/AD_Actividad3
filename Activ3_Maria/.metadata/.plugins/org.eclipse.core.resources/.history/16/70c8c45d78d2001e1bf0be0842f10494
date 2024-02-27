@@ -1,0 +1,29 @@
+package modelo.entidad;
+
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "librerias")
+public class Libreria {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nombre, nombreDueño, direccion;
+	@ManyToMany(mappedBy="listaLibrerias", cascade=CascadeType.PERSIST)
+	@JoinTable(name="librerias_libros",
+				joinColumns= {@JoinColumn(name="fk_id_libreria", referencedColumnName = "id")},
+				inverseJoinColumns = {@JoinColumn(name="fk_id_libro", referencedColumnName = "id")})
+	private ArrayList<Libro> listaLibros;
+
+}

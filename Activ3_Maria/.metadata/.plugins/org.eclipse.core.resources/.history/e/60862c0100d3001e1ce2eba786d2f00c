@@ -1,0 +1,25 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "colegios")
+public class Colegio {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
+	private String nombre, direccion;
+	@OneToMany(mappedBy="colegio", cascade = CascadeType.PERSIST)
+	private List<Profesor> listaProfesores;
+	private List<Asignatura> listaAsignaturas;
+	private Director director;
+}

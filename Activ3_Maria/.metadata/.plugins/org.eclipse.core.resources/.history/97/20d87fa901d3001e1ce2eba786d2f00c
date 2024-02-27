@@ -1,0 +1,27 @@
+package modelo.entidad;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="directores")
+public class Director {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private int edad;
+	@OneToOne
+	private Colegio Colegio;
+	//Consideramos que un profesor tiene como jefe un director, y un director tiene a cargo N profesores
+	@OneToMany
+	private List<Profesor> listaProfesores;
+}
