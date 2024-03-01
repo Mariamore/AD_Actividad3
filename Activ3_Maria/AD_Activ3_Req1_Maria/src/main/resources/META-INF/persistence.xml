@@ -9,18 +9,14 @@
 		<class>modelo.entidad.Libreria</class>
 		
 		<properties>
-			<!-- Tenemos una seríe de parametros minimos que decirle a JPA para que se pueda
+			<!-- Tenemos una serie de parametros minimos que decirle a JPA para que se pueda
 			contectar a la BBDD -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_libreria"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<!-- 
-			Podemos poner los sigueintes parametros a la action de la generacion de la base
-			de datos:
-			create -> si queremos crear la bbdd cada vez que arranquemos la aplicacion.
-			drop-and-create -> cada vez que arranquemos la app se borraran y crearan las 
-			tablas desde cero.
-			update -> para solamente refrescar las tablas en caso de cambios de anotaciones
+			Ponemos como parámetro drop-and-create para que cada vez que arranquemos la app 
+			se borraran y crearan las tablas desde cero.
 			 -->
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 						 
@@ -28,10 +24,6 @@
 			<property name = "hibernate.show_sql" value = "true" />
 			<property name = "hibernate.dialect" value = "org.hibernate.dialect.MySQL8Dialect" />
 			
-			<!-- Mostrar trazas sql con eclipselink 
-			<property name="eclipselink.logging.level.sql" value="FINE" />
-			<property name="eclipselink.logging.parameters" value="true" />
-			-->
 		</properties>
 	</persistence-unit>
 </persistence>
